@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "词下 · WordBelow",
+  "version": "1.5.0",
+  "description": "沉浸式双语阅读：英文保留，中文小字显示在下方。支持离线逐词、AI 整句、右键一键翻译和自动翻译，中文页面自动跳过。",
+  "minimum_chrome_version": "109",
+  "permissions": ["storage", "activeTab", "contextMenus"],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "background": {"service_worker": "background.js"},
+  "options_page": "options.html",
+  "action": {
+    "default_title": "词下 · WordBelow — 沉浸式双语阅读",
+    "default_popup": "popup.html",
+    "default_icon": {"16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png"}
+  },
+  "icons": {"16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png"},
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["dictionary.js", "sentence.js", "language-detector.js", "content.js"],
+    "css": ["content.css", "sentence.css"],
+    "run_at": "document_idle",
+    "all_frames": true,
+    "match_about_blank": true
+  }],
+  "web_accessible_resources": [{
+    "resources": ["dictionary/*.json", "content.css", "sentence.css"],
+    "matches": ["http://*/*", "https://*/*"]
+  }]
+}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="词下 WordBelow：保留英文原文，在单词或句子下方显示小字中文。离线逐词、兼容 API 整句、按阅读位置翻译，自定义颜色与透明度。">
+  <meta name="theme-color" content="#0c645c">
+  <title>词下 · WordBelow — 读英文，中文在词下</title>
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#" aria-label="词下 WordBelow 首页"><img src="assets/icon.png" alt="" width="42" height="42"><span>词下<span class="brand-en">WordBelow</span></span></a>
+    <nav aria-label="主导航"><a href="#features">功能</a><a href="#install">安装</a><a href="#api">API 设置</a><a class="source-link" href="https://github.com/ABOOAI/wordbelow">GitHub <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>桌面 Chrome 扩展 <span class="version">v1.5.0 · 开源</span></p>
+        <h1 id="hero-title">读英文，<br>中文在<span class="underlined">词下。</span></h1>
+        <p class="hero-intro">保留原文，在单词或句子下方添一行小字中文。读懂之后，继续读英文。</p>
+        <div class="hero-actions"><a class="button primary" href="https://github.com/ABOOAI/wordbelow/releases/latest/download/WordBelow-1.5.0.zip">下载 Chrome 版 <span aria-hidden="true">↓</span></a><a class="button text" href="#install">查看安装步骤 <span aria-hidden="true">→</span></a></div>
+        <p class="hero-note">离线逐词无需账号 · API 模式使用你自己的密钥<br>解压加载版本，支持 Chrome 109 及以上</p>
+      </div>
+      <div class="reading-card" aria-label="双语显示交互示例">
+        <div class="reading-top"><span class="paper-label">A NOTE ON READING</span><span class="demo-tag">显示示例</span></div>
+        <div class="reading-content" id="reading-demo">
+          <p class="reading-kicker">A little understanding goes a long way.</p>
+          <div id="word-demo" class="demo-words" lang="en">
+            <p><ruby>Reading<rp>（</rp><rt lang="zh-CN">阅读</rt><rp>）</rp></ruby> <ruby>opens<rp>（</rp><rt lang="zh-CN">打开</rt><rp>）</rp></ruby> <ruby>doors<rp>（</rp><rt lang="zh-CN">门</rt><rp>）</rp></ruby>.</p>
+            <p><ruby>Small<rp>（</rp><rt lang="zh-CN">小的</rt><rp>）</rp></ruby> <ruby>steps<rp>（</rp><rt lang="zh-CN">步骤</rt><rp>）</rp></ruby> <ruby>make<rp>（</rp><rt lang="zh-CN">使</rt><rp>）</rp></ruby> <ruby>a<rp>（</rp><rt lang="zh-CN">一个</rt><rp>）</rp></ruby> <ruby>big<rp>（</rp><rt lang="zh-CN">大的</rt><rp>）</rp></ruby> <ruby>difference<rp>（</rp><rt lang="zh-CN">差别</rt><rp>）</rp></ruby>.</p>
+          </div>
+          <div id="sentence-demo" class="demo-sentences" hidden>
+            <div><p lang="en">Reading opens doors.</p><p class="sentence-gloss">阅读为你打开一扇扇大门。</p></div>
+            <div><p lang="en">Small steps make a big difference.</p><p class="sentence-gloss">小小的进步，也能带来很大的改变。</p></div>
+          </div>
+        </div>
+        <div class="demo-toolbar">
+          <div class="mode-control" role="group" aria-label="显示模式"><button type="button" data-mode="word" aria-pressed="true">逐词对照</button><button type="button" data-mode="sentence" aria-pressed="false">整句翻译</button></div>
+          <div class="appearance-controls"><label for="demo-color">中文颜色</label><input id="demo-color" type="color" value="#0c645c"><label for="demo-opacity">透明度 <output id="opacity-value" for="demo-opacity">0%</output></label><input id="demo-opacity" type="range" min="0" max="100" value="0" aria-describedby="demo-disclaimer"></div>
+        </div>
+        <p class="demo-disclaimer" id="demo-disclaimer">本地排版演示，译文预先编写；此处不会调用 API。</p>
+        <p class="visually-hidden" id="demo-status" role="status" aria-live="polite" aria-atomic="true">当前显示逐词对照示例。</p>
+      </div>
+    </section>
+
+    <section class="principles wrap" aria-label="阅读方式"><p><span>01</span> 原文一直在</p><p><span>02</span> 中文小字在下方</p><p><span>03</span> 无需逐词点击</p></section>
+
+    <section class="section wrap" id="features" aria-labelledby="features-title">
+      <div class="section-heading"><p class="eyebrow">FOR YOUR READING FLOW</p><h2 id="features-title">按你的阅读方式，<br>给中文留一点位置。</h2><p>从词义到句意，从手动到自动。让对照文字配合阅读，而不是打断阅读。</p></div>
+      <div class="feature-grid">
+        <article class="feature"><span class="feature-number">01 / WORDS</span><h3>逐词对照，离线就能读</h3><p>自动在英文单词下方显示词典释义。内置 ECDICT 的 398,070 个查找条目，无需账号，不发送网页文字。</p><span class="feature-footnote">词典常用义，可能与当前语境不同</span></article>
+        <article class="feature"><span class="feature-number">02 / SENTENCES</span><h3>整句翻译，理解上下文</h3><p>接入自己的 OpenAI 兼容 API，或使用 Qwen-MT Flash。返回结果核对后，中文译文放在对应英文句子下方。</p><span class="feature-footnote">服务按各自规则计费，模型仍可能误译</span></article>
+        <article class="feature"><span class="feature-number">03 / ON YOUR TERMS</span><h3>右键即翻译，也可自动</h3><p>默认手动：右键直接点“翻译此页”，再点“恢复原文”即可关闭。需要随时伴读，可以开启自动翻译英文网页。</p><span class="feature-footnote">简体、繁体中文页面自动跳过</span></article>
+        <article class="feature"><span class="feature-number">04 / A LITTLE AHEAD</span><h3>读到哪里，译到附近</h3><p>API 模式优先提交可视区域和上下 400 像素的提前量。远处未浏览内容接近后再译，完成结果复用缓存。</p><span class="feature-footnote">减少未读内容的提交与重复调用</span></article>
+        <article class="feature"><span class="feature-number">05 / YOUR COLORS</span><h3>小字的颜色，由你决定</h3><p>中文字号、任意 RGB 颜色、HEX 色值、透明度都可自定义。调样式即时生效，英文样式照旧，无需重新请求译文。</p><span class="feature-footnote">离线逐词和 API 整句都支持</span></article>
+        <article class="feature"><span class="feature-number">06 / KEEP IN CONTROL</span><h3>给每个网站一个选择</h3><p>单独暂停当前网站，或用总开关关闭翻译。恢复原文会移除注释、停止旧任务；启动后继续处理新加载内容。</p><span class="feature-footnote">代码、输入框和可编辑区域会跳过</span></article>
+      </div>
+    </section>
+
+    <section class="install-section" id="install" aria-labelledby="install-title">
+      <div class="wrap install-layout">
+        <div class="install-intro"><p class="eyebrow">START READING</p><h2 id="install-title">几步安装，<br>开始双语阅读。</h2><p>源码可直接运行，无需构建。首次安装使用 Chrome 的“加载已解压的扩展程序”。</p><a class="button primary" href="https://github.com/ABOOAI/wordbelow/releases/latest/download/WordBelow-1.5.0.zip">下载 v1.5.0 <span aria-hidden="true">↓</span></a></div>
+        <ol class="install-steps">
+          <li><span class="step-number">1</span><div><h3>下载并解压</h3><p>将安装包解压到固定文件夹，并保留这个目录。找到其中包含 <code>manifest.json</code> 的扩展文件夹。</p></div></li>
+          <li><span class="step-number">2</span><div><h3>加载到 Chrome</h3><p>打开 <code>chrome://extensions</code>，开启“开发者模式”，点击“加载已解压的扩展程序”，选择刚才的扩展文件夹。</p><button class="copy-button" id="copy-extensions" type="button">复制扩展管理页地址</button><p id="copy-status" class="copy-status" role="status" aria-live="polite"></p></div></li>
+          <li><span class="step-number">3</span><div><h3>刷新网页，右键翻译</h3><p>固定“词下”图标，刷新英文网页，右键直接选择“翻译此页”。默认从离线逐词开始；API 模式需先配置服务。</p></div></li>
+        </ol>
+      </div>
+      <div class="wrap upgrade-note"><strong>已经安装旧版 WordWise？</strong><p>用新版文件覆盖原加载目录，保持路径不变，在扩展管理页点击原卡片的“重新加载”，再刷新网页。这样可保留扩展 ID、API 密钥和设置。请保留原扩展条目。</p><a href="https://github.com/ABOOAI/wordbelow#已安装-wordwise-版本的原位升级">查看原位升级说明 <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section class="section wrap" id="api" aria-labelledby="api-title">
+      <div class="api-layout"><div class="api-copy"><p class="eyebrow">BRING YOUR OWN API</p><h2 id="api-title">接入熟悉的模型，<br>按句读懂英文。</h2><p>打开扩展面板中的“API 设置”，填写服务地址、模型和自己的密钥，保存并允许访问该域名。测试成功后，选择整句模式，再右键翻译网页。</p><p>密钥只保存在当前 Chrome 的本地扩展存储中，不会交给网页。API 模式会向所配置的服务发送待译英文，请按服务商政策选择使用内容。</p><a class="inline-link" href="https://github.com/ABOOAI/wordbelow#api-配置">查看完整 API 配置 <span aria-hidden="true">↗</span></a></div><div class="api-panel"><div class="api-panel-heading"><span>QWEN-MT FLASH</span><span class="panel-tag">起始建议</span></div><dl><div><dt>模型名称</dt><dd><code>qwen-mt-flash</code></dd></div><div><dt>每批句数</dt><dd>4 <span>句</span></dd></div><div><dt>同时请求数</dt><dd>2 <span>个</span></dd></div><div><dt>服务地址与密钥</dt><dd class="api-small">使用你自己百炼控制台提供的配置</dd></div></dl><p>先从 4 × 2 开始。服务稳定、短句较多时再提高批量；出现限流、超时或等待变长时降低并发。合并请求核对句间对应关系，模型语义质量仍需人工判断。</p><a href="https://help.aliyun.com/zh/model-studio/machine-translation/">Qwen-MT 官方说明 <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+
+    <section class="section wrap faq-section" aria-labelledby="faq-title"><div class="section-heading"><p class="eyebrow">A FEW THINGS TO KNOW</p><h2 id="faq-title">使用前，了解这些。</h2></div><div class="faq-list">
+      <details><summary>逐词模式真的会给每个英文词加中文吗？<span aria-hidden="true">+</span></summary><p>启用后会自动处理可见正文中的英文单词，无需逐个点击。词典未收录的单词可显示“未收录”；代码、输入框、按钮、可编辑区域和网页设置为不翻译的内容会跳过。词典释义不一定符合当前句子中的词义。</p></details>
+      <details><summary>安装后没有看到翻译，怎么办？<span aria-hidden="true">+</span></summary><p>默认不会自动翻译。先刷新英文网页，确认总开关已开启、当前网站未暂停，再右键选择“翻译此页”。中文页面会自动跳过。API 模式还需先保存服务配置并测试成功。</p></details>
+      <details><summary>API 很慢或超时，可以怎么调？<span aria-hidden="true">+</span></summary><p>Qwen-MT Flash 推荐从每批 4 句、同时 2 个请求开始。限流或等待增加时降到 1—2 个并发，批次格式不兼容时设为每批 1 句。网络、文本长度、模型负载与配额都会影响速度；单次请求期限 60 秒，失败后保留英文。恢复原文后重新翻译可以重试。</p></details>
+      <details><summary>网页内容和密钥会发到哪里？<span aria-hidden="true">+</span></summary><p>离线模式完全在本机查词，不发送网页文字。API 模式向你配置的服务发送英文句子和翻译参数，密钥仅用于服务授权；项目没有自建翻译中转服务。密钥保存在本机扩展存储中，不写进网页、安装包或本仓库；本地存储不是加密的密码保险箱。具体数据处理与计费由服务方决定。</p></details>
+      <details><summary>哪些页面暂时不支持？<span aria-hidden="true">+</span></summary><p>Chrome 内置页、应用商店、浏览器 PDF 阅读器、图片里的文字和 Chrome 手机版不支持。密集排版可能因小字注释增加行高；可降低字号或暂停该网站。分句与中文识别采用有限文本判断，混合语言、缩写或异常结构可能影响结果。</p></details>
+      <details><summary>这个项目从哪里来，能修改源码吗？<span aria-hidden="true">+</span></summary><p>词下基于 breeze-r/wordwise 改造，词典来自 skywind3000/ECDICT，均保留 MIT 许可和来源。新增源码同样以 MIT 许可提供，扩展无需编译，可在 GitHub 查看、修改和分发。本项目与第三方“沉浸式翻译 / Immersive Translate”产品无隶属关系。</p></details>
+    </div></section>
+
+    <section class="closing wrap"><p>让下一页英文，<br><strong>多一点读懂的把握。</strong></p><a class="button primary" href="https://github.com/ABOOAI/wordbelow/releases/latest/download/WordBelow-1.5.0.zip">下载词下 <span aria-hidden="true">↓</span></a></section>
+  </main>
+  <footer class="site-footer wrap"><div class="footer-brand">词下 <span>WordBelow · v1.5.0</span></div><p>基于 <a href="https://github.com/breeze-r/wordwise">WordWise</a> 与 <a href="https://github.com/skywind3000/ECDICT">ECDICT</a> · MIT 许可</p><a href="https://github.com/ABOOAI/wordbelow">查看源码 <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>

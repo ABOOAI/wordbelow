@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API 翻译设置 · 词下 WordBelow</title>
+    <link rel="stylesheet" href="options.css">
+    <script src="options.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">词下 · WordBelow</p>
+        <h1>API 翻译设置</h1>
+        <p class="intro">逐词模式使用本地词典。整句模式使用你自己的 OpenAI 兼容服务，在每句英文下方显示中文小字。</p>
+      </header>
+
+      <form id="api-form" class="card" novalidate>
+        <div class="model-preset">
+          <button id="qwen-preset" type="button" class="secondary" aria-describedby="preset-hint" disabled>使用 Qwen-MT Flash 预设</button>
+          <p id="preset-hint" class="hint">填入模型和每批 4 句、同时 2 个请求的设置，保留有效的非 MiMo 地址。从 MiMo 切换时请填写自己的服务地址和密钥。仅填写草稿，不会保存或发送请求。</p>
+        </div>
+        <div class="field">
+          <label for="base-url">服务地址</label>
+          <input id="base-url" name="baseUrl" type="url" inputmode="url" autocomplete="off" spellcheck="false" aria-describedby="base-hint base-error" placeholder="https://你的服务域名/v1" disabled>
+          <p id="base-hint" class="hint">可填写服务根地址、/v1 地址或完整 /chat/completions 地址。支持 HTTPS，以及本机 HTTP 服务。</p>
+          <p id="base-error" class="field-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="model">模型名称</label>
+          <input id="model" name="model" type="text" autocomplete="off" spellcheck="false" aria-describedby="model-hint model-error" placeholder="填写服务提供商给出的模型名称" disabled>
+          <p id="model-hint" class="hint">Qwen-MT Flash 的模型 ID 为 qwen-mt-flash。也可手动填写其他模型和对应服务地址。</p>
+          <p id="model-error" class="field-error" hidden></p>
+          <div id="qwen-hint" class="provider-note" hidden>
+            <p>Qwen-MT 按英文 → 中文调用专用翻译接口。推荐每批 4 句、同时 2 个请求；批次结果边界异常时，改为单句核对。</p>
+            <p>请从百炼控制台复制你的业务空间或 DashScope 服务地址，并使用同地域的密钥。也支持提供此模型的兼容网关；公开安装包不包含预置账号、个人服务地址或密钥。</p>
+            <p><a href="https://help.aliyun.com/zh/model-studio/machine-translation/" target="_blank" rel="noopener noreferrer">查看百炼 Qwen-MT 官方说明</a></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="api-key">API 密钥</label>
+          <div class="key-input">
+            <input id="api-key" name="apiKey" type="password" autocomplete="off" spellcheck="false" aria-describedby="key-hint key-error" placeholder="填写你自己的 API 密钥" disabled>
+            <button id="toggle-key" type="button" class="secondary reveal" aria-pressed="false" aria-label="显示 API 密钥" disabled>显示</button>
+          </div>
+          <p id="key-hint" class="hint">密钥只保存在本机 Chrome 扩展存储中，不会交给网页。本机服务可留空。</p>
+          <div class="key-import">
+            <button id="import-key" type="button" class="secondary" aria-describedby="import-hint" disabled>从文件导入密钥</button>
+            <input id="key-file" type="file" accept=".txt,.key" hidden disabled>
+            <p id="import-hint" class="hint">选择纯密钥或单行 API_KEY 配置的 .txt / .key 文件（最多 16 KB）。只填入隐藏的密钥草稿，点击保存后才写入扩展存储。</p>
+          </div>
+          <p id="key-error" class="field-error" hidden></p>
+        </div>
+
+        <fieldset class="performance-settings">
+          <legend>翻译速度</legend>
+          <p id="performance-intro" class="hint performance-intro">默认每次合并 6 句，并同时发送最多 3 个请求；译文仍逐句显示在原文下方。</p>
+          <div class="check-field">
+            <input id="disable-thinking" name="disableThinking" type="checkbox" checked aria-describedby="thinking-hint" disabled>
+            <label for="disable-thinking">关闭 MiMo 深度思考</label>
+          </div>
+          <p id="thinking-hint" class="hint">仅对可识别的 MiMo V2 系列模型（如 mimo-v2.6-flash）发送关闭思考参数，服务需支持该参数。其他模型保持服务默认行为。复杂专业文本可取消勾选，比较服务默认设置下的译文。</p>
+          <div class="performance-grid">
+            <div class="field">
+              <label for="batch-size">每批句数</label>
+              <select id="batch-size" name="batchSize" aria-describedby="batch-hint" disabled>
+                <option value="1">1 句 · 单句兼容</option>
+                <option value="4">4 句</option>
+                <option value="6" selected>6 句</option>
+                <option value="8">8 句</option>
+              </select>
+              <p id="batch-hint" class="hint">合并请求可减少等待；批次也有总长度上限。服务不支持批量结果时，可选择 1 句。</p>
+            </div>
+            <div class="field">
+              <label for="concurrency">同时请求数</label>
+              <select id="concurrency" name="concurrency" aria-describedby="concurrency-hint" disabled>
+                <option value="1">1 个</option>
+                <option value="2">2 个</option>
+                <option value="3" selected>3 个</option>
+                <option value="4">4 个</option>
+              </select>
+              <p id="concurrency-hint" class="hint">服务额度充足时可选 4 个；出现限流或等待变长时降到 1—2 个。</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <p class="permission-note">点击保存时，Chrome 会请求访问此服务域名的权限。保存不会切换标注方式。</p>
+        <div class="actions">
+          <button id="save" type="submit" class="primary" disabled>保存设置</button>
+          <button id="test" type="button" class="secondary" disabled>测试翻译</button>
+          <button id="clear-key" type="button" class="text-button" disabled>清除已保存密钥</button>
+        </div>
+        <p id="form-status" role="status" aria-live="polite" aria-atomic="true" class="form-status">正在读取设置…</p>
+      </form>
+
+      <section class="card test-card" aria-label="翻译测试结果">
+        <div class="test-heading"><h2>测试句子</h2><span>点击测试才会发送</span></div>
+        <p id="test-source" lang="en">Reading opens doors.</p>
+        <p id="test-translation" class="translation" role="status" aria-live="polite">保存设置后，点击“测试翻译”获取译文。</p>
+        <p class="hint test-note">测试会向已配置的服务发送这条示例句子，可能产生费用。</p>
+      </section>
+
+      <footer>
+        <p>保存后，在扩展弹窗中选择“整句翻译（API）”，再通过网页右键菜单选择“翻译此页”。选择“逐词对照（本地）”可继续使用离线词典。</p>
+        <p>网页翻译只向你配置的服务发送句子。密钥用于该服务的请求授权，具体处理规则由服务提供商决定。</p>
+      </footer>
+    </main>
+  </body>
+</html>

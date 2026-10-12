@@ -1,0 +1,37 @@
+/* Chinese follows each original sentence; source elements remain untouched. */
+.wwil-sentence-gloss {
+  display: block !important;
+  position: static !important;
+  float: none !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0.12em 0 0.38em !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  font-family: system-ui, "Microsoft YaHei", "PingFang SC", sans-serif !important;
+  font-size: max(10px, var(--wwil-sentence-size, 0.6em)) !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  line-height: 1.45 !important;
+  color: var(--wwil-sentence-color, inherit) !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  text-indent: 0 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  opacity: var(--wwil-sentence-opacity, 0.92) !important;
+}
+.wwil-sentence-gloss[data-state="waiting"],
+.wwil-sentence-gloss[data-state="translating"],
+.wwil-sentence-gloss[data-state="needs-config"],
+.wwil-sentence-gloss[data-state="too-long"],
+.wwil-sentence-gloss[data-state="error"] { opacity: var(--wwil-sentence-opacity, 0.65) !important; }
+@media print {
+  .wwil-sentence-gloss { break-inside: avoid !important; }
+}

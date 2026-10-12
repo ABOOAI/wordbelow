@@ -1,0 +1,41 @@
+# Generated packages and dependency caches
+/dist/
+node_modules/
+__pycache__/
+*.py[cod]
+
+# Credentials and private configuration
+.env*
+*.key
+*.pem
+*.p12
+*.pfx
+keys/
+secrets/
+private-config/
+private-config.*
+qwenmt.txt
+api-key.txt
+api-keys.txt
+
+# Browser profiles, local test output and logs
+profiles/
+browser-profile/
+chrome-profile/
+test-profile/
+playwright-profile/
+playwright-report/
+test-results/
+*.log
+*.bak
+*.tmp
+*.zip
+*.crx
+
+# Local editor and operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+

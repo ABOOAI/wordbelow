@@ -1,0 +1,157 @@
+{
+  "formatVersion": 1,
+  "source": "ECDICT",
+  "repository": "https://github.com/skywind3000/ECDICT",
+  "sourceCommit": "bc015ed2e24a7abef49fc6dbbb7fe32c1dadaf8b",
+  "sourceCommitDate": "2025-03-28T01:02:57Z",
+  "csvUrl": "https://raw.githubusercontent.com/skywind3000/ECDICT/bc015ed2e24a7abef49fc6dbbb7fe32c1dadaf8b/ecdict.csv",
+  "csvBytes": 65933428,
+  "csvSha256": "1a6947e04785db63613a92e14903cdae7954f7e84860b10e68e5c7cbb3f9c3cf",
+  "csvRows": 770611,
+  "eligibleSingleTokenRows": 397789,
+  "directEntries": 397789,
+  "exchangeAliasesAdded": 281,
+  "inflectionEntriesImproved": 29620,
+  "totalEntries": 398070,
+  "buildDate": "2026-10-12",
+  "license": "MIT; see ECDICT-LICENSE.txt",
+  "selection": "ASCII English single tokens, internal apostrophes/hyphens allowed; Chinese senses only. Case is normalized. Multi-word expressions are excluded.",
+  "glossPolicy": "First one or two Chinese senses. POS/domain labels and redundant parenthesized inflection suffixes removed from the short label. Attested inflections prefer a lowercase base over an uppercase-only acronym collision. Labels over 18 characters use the first sense or ellipsis. Long English acronym expansions are skipped to keep Chinese in the short label. Original senses remain in optional full field.",
+  "shards": {
+    "a": {
+      "entries": 29853,
+      "bytes": 1260615,
+      "sha256": "d1be3f1ffc50244963b7af160166a0fa7faee6332799326b5be95503f835726e"
+    },
+    "b": {
+      "entries": 22984,
+      "bytes": 981805,
+      "sha256": "431f2fcbf8b89dc8544feab61e5f3803f97f26b4660337a313fa732f01fb8a82"
+    },
+    "c": {
+      "entries": 35060,
+      "bytes": 1478533,
+      "sha256": "59cb8b5580e0acb32bb6095a62dd77276e46ebbdc5f6679e40d9cd975c46d4a3"
+    },
+    "d": {
+      "entries": 21046,
+      "bytes": 864745,
+      "sha256": "ef10f6f0b473a49fac0c1815f2e87084978dd1ca6968718dd3e42c62e12bc1ff"
+    },
+    "e": {
+      "entries": 15919,
+      "bytes": 670119,
+      "sha256": "6c129cb62e117105c6a37ee851a317ceb51fa8c6d8beef8c4637d77779b538a5"
+    },
+    "f": {
+      "entries": 13566,
+      "bytes": 565062,
+      "sha256": "cd193713d6dfab4944ed3691f7e56445838786dbcd4316efc2cf3f2510c15887"
+    },
+    "g": {
+      "entries": 13194,
+      "bytes": 540835,
+      "sha256": "f9b9fd679dddbce01cb725605866d7e64ea2ea6ac4aa11813bec2afc6fcdd0c4"
+    },
+    "h": {
+      "entries": 18868,
+      "bytes": 770292,
+      "sha256": "107eb7a1bc5f031075d10b7cfe7cbcfc787aa4a1d493289f5fa1cd8c54aa847e"
+    },
+    "i": {
+      "entries": 12919,
+      "bytes": 576145,
+      "sha256": "6e263809238bc20399a45a017c84106bf229861d6a8dc7bfbd558aa8940467d6"
+    },
+    "j": {
+      "entries": 3194,
+      "bytes": 143612,
+      "sha256": "b86817cbc11ffbf4cf75f70e0f9ade2ee270942f83305d89c094a061c313dd51"
+    },
+    "k": {
+      "entries": 6440,
+      "bytes": 253854,
+      "sha256": "dde70288788e77980b57b104e1dceeb000ac08ddd3d73943f3c425d32c1d147b"
+    },
+    "l": {
+      "entries": 13410,
+      "bytes": 539798,
+      "sha256": "828b363b39a6f680c176f2f91799152f38e4b601b18510962416b5d42588d37e"
+    },
+    "m": {
+      "entries": 27075,
+      "bytes": 1107991,
+      "sha256": "47b3e4bd6ac23afa6bdcf49ff098de109be09fbacfb9866a3b00916f7716c86d"
+    },
+    "n": {
+      "entries": 11908,
+      "bytes": 513366,
+      "sha256": "04b81ee60d2b5ad0afadd2f9f3285c1fcfd59b3d495be52182e26dd6f2b17b77"
+    },
+    "o": {
+      "entries": 11156,
+      "bytes": 465716,
+      "sha256": "418719ef328fd403d791de03206f8b6fccc428b23ccb1a6211c8db51806ae2f3"
+    },
+    "p": {
+      "entries": 35759,
+      "bytes": 1458425,
+      "sha256": "a2eb63afb60fc2c4a898c8ad7c18834c0a2f532c91d1a0aabb5791d9172f9530"
+    },
+    "q": {
+      "entries": 1785,
+      "bytes": 79447,
+      "sha256": "9539b05c18ae9a6cbcfcf1b87ada48c582d9c40800171966005a57b96be59b43"
+    },
+    "r": {
+      "entries": 17048,
+      "bytes": 722491,
+      "sha256": "34882da6d3d63dd5d92f88a8ba3e2db5b6f05bb3d5ffa17e4c9db2eac3dc1e2d"
+    },
+    "s": {
+      "entries": 39664,
+      "bytes": 1659418,
+      "sha256": "c2d6544887792ec55297648308bc72bb6c403ba483a570731037d800a126ad05"
+    },
+    "t": {
+      "entries": 21264,
+      "bytes": 874712,
+      "sha256": "16a39b6ebb2e1e46a3ea15a7668bc1ff3ef6e8fd7019a8e87a250bf91f3072bc"
+    },
+    "u": {
+      "entries": 8393,
+      "bytes": 370849,
+      "sha256": "63a102c6690bd99e0c2a2038f5274096468dcce6cf620cf2d6e0dd9f8207c635"
+    },
+    "v": {
+      "entries": 5877,
+      "bytes": 248797,
+      "sha256": "5b79d93fcef9f576624471bed811a0da5b35980740fae26c1b7ac71fd41f1096"
+    },
+    "w": {
+      "entries": 7597,
+      "bytes": 331413,
+      "sha256": "8b5a7a7cd6eaf2cb7e84c98bd49437f6c8f3108525fe0fff180e1263e592df7e"
+    },
+    "x": {
+      "entries": 802,
+      "bytes": 33080,
+      "sha256": "ef5dcfec26ce7fa7d35b046052d41c51215a4d9beb7c983a5b66189749361a3e"
+    },
+    "y": {
+      "entries": 1447,
+      "bytes": 63648,
+      "sha256": "17cfef0b69e3292e0a2ab5583f76105627c4b203974e67a306d5195deb7d0eec"
+    },
+    "z": {
+      "entries": 1842,
+      "bytes": 76166,
+      "sha256": "a39aed3c0982f77d906bb06f09d6fc138495a871b1aeffcbe62f2e892b6707f0"
+    },
+    "other": {
+      "entries": 0,
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    }
+  }
+}

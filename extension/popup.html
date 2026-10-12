@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>词下 · WordBelow</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="header">
+        <div>
+          <p class="eyebrow">英文在上 · 中文在下</p>
+          <h1>词下 <span>WordBelow</span></h1>
+        </div>
+        <span class="local-badge">离线词典</span>
+      </header>
+
+      <section class="mode-card" aria-label="选择标注方式">
+        <div class="mode-heading">
+          <label for="translation-mode">标注方式</label>
+          <select id="translation-mode" disabled>
+            <option value="word">逐词对照（本地）</option>
+            <option value="sentence">整句翻译（API）</option>
+          </select>
+        </div>
+        <div class="mode-helper">
+          <p id="mode-hint">右键翻译此页后使用本地词典，无需联网。</p>
+          <button type="button" id="open-options">API 设置</button>
+        </div>
+      </section>
+
+      <div class="settings">
+        <label class="toggle-row" for="enabled">
+          <span class="label-copy"><strong>启用翻译功能</strong><span>开启后，按自动翻译选项或网页右键菜单运行</span></span>
+          <input type="checkbox" id="enabled" class="switch" disabled>
+        </label>
+        <label class="toggle-row" for="auto-translate">
+          <span class="label-copy"><strong>自动翻译英文网页</strong><span id="auto-translate-hint">关闭时需右键网页 → 翻译此页；中文页面仍跳过</span></span>
+          <input type="checkbox" id="auto-translate" class="switch" aria-describedby="auto-translate-hint" disabled>
+        </label>
+        <label class="toggle-row" for="site-disabled">
+          <span class="label-copy"><strong>在此网站暂停</strong><span id="site-host">正在读取当前网站…</span></span>
+          <input type="checkbox" id="site-disabled" class="switch" disabled>
+        </label>
+
+        <div class="appearance">
+          <div class="field-heading">
+            <label for="gloss-size">中文字号</label>
+            <output id="gloss-size-value" for="gloss-size">60%</output>
+          </div>
+          <input id="gloss-size" type="range" min="0.45" max="0.85" step="0.05" value="0.6" aria-describedby="size-hint" disabled>
+          <p id="size-hint" class="field-hint">相对于英文正文的字号</p>
+          <div class="color-row">
+            <label for="gloss-color">中文颜色</label>
+            <select id="gloss-color" disabled>
+              <option value="auto">跟随原文</option>
+              <option value="gray">灰色</option>
+              <option value="teal">青绿色</option>
+              <option value="custom">自定义</option>
+            </select>
+          </div>
+          <div id="custom-color-field" class="custom-color-field" hidden>
+            <label for="custom-gloss-color-hex">自定义色值</label>
+            <div class="custom-color-inputs">
+              <input id="custom-gloss-color-picker" type="color" value="#4b5563" aria-label="选择中文自定义颜色" disabled>
+              <input id="custom-gloss-color-hex" type="text" value="#4b5563" maxlength="7" autocomplete="off" spellcheck="false" aria-describedby="custom-color-hint custom-color-error" disabled>
+            </div>
+            <p id="custom-color-hint" class="field-hint">选择颜色，或输入 #RGB / #RRGGBB 色值</p>
+            <p id="custom-color-error" class="field-error" role="alert" hidden></p>
+          </div>
+          <div class="opacity-field">
+            <div class="field-heading">
+              <label for="gloss-transparency">中文透明度</label>
+              <output id="gloss-transparency-value" for="gloss-transparency">10%</output>
+            </div>
+            <input id="gloss-transparency" type="range" min="0" max="100" step="1" value="10" aria-describedby="opacity-hint" disabled>
+            <p id="opacity-hint" class="field-hint">0% 完全不透明 · 100% 完全透明，仅影响中文</p>
+          </div>
+          <div class="appearance-preview" aria-label="中文样式预览">
+            <p id="preview-original" class="preview-original" lang="en">Reading</p>
+            <p id="preview-gloss" class="preview-gloss">阅读</p>
+          </div>
+        </div>
+
+        <label class="toggle-row unknown-row" id="unknown-row" for="show-unknown">
+          <span class="label-copy"><strong>提示未收录单词</strong><span>词典未收录时也显示提示</span></span>
+          <input type="checkbox" id="show-unknown" class="switch" disabled>
+        </label>
+      </div>
+
+      <section class="page-status" aria-label="当前网页标注状态">
+        <div class="status-heading"><strong>当前网页</strong><button type="button" id="refresh-status">刷新状态</button></div>
+        <p id="page-status" role="status" aria-live="polite" aria-atomic="true">正在读取标注状态…</p>
+      </section>
+      <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+
+      <footer>
+        <p><strong id="translation-source">翻译源：本地 ECDICT 英汉词典</strong></p>
+        <p id="source-note">无需账号或 API；按词典词义标注，不做整段翻译。</p>
+      </footer>
+    </main>
+  </body>
+</html>
